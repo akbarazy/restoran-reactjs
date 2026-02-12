@@ -7,6 +7,6 @@ function Layout({ children, loading }) {
       {children}
     </div>
   );
-};
+}
 
 export default Layout;
