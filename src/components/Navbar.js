@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faBars } from '@fortawesome/free-solid-svg-icons';
+import Dropdown from './Dropdown';
 
 function Navbar() {
   return (
@@ -38,26 +39,17 @@ function Navbar() {
             Menu
           </NavLink>
 
-          <div className='nav-item dropdown'>
-            <span
-              className='nav-link dropdown-toggle'
-              role='button'
-              data-bs-toggle='dropdown'
-            >
-              Pages
-            </span>
-            <div className='dropdown-menu m-0'>
-              <NavLink to='/booking' className='dropdown-item'>
-                Booking
-              </NavLink>
-              <NavLink to='/team' className='dropdown-item'>
-                Our Team
-              </NavLink>
-              <NavLink to='/testimonial' className='dropdown-item'>
-                Testimonial
-              </NavLink>
-            </div>
-          </div>
+          <Dropdown title='Pages'>
+            <NavLink to='/booking' className='dropdown-item'>
+              Booking
+            </NavLink>
+            <NavLink to='/team' className='dropdown-item'>
+              Our Team
+            </NavLink>
+            <NavLink to='/testimonial' className='dropdown-item'>
+              Testimonial
+            </NavLink>
+          </Dropdown>
 
           <NavLink to='/contact' className='nav-item nav-link'>
             Contact
