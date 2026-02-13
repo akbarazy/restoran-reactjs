@@ -9,9 +9,8 @@ import '@fontsource/nunito/600.css';
 import '@fontsource/nunito/700.css';
 import '@fontsource/nunito/800.css';
 import '@fontsource/pacifico';
-import './bootstrap.min.css';
-import './index.css';
-
+import './assets/styles/bootstrap.min.css';
+import './assets/styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
