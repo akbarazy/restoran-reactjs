@@ -4,7 +4,7 @@ function Layout({ children, loading }) {
   return (
     <div className='container-xxl bg-white p-0'>
       <Spinner show={loading} />
-      {children}
+      {!loading && children}
     </div>
   );
 }

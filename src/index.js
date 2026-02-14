@@ -10,6 +10,7 @@ import '@fontsource/nunito/700.css';
 import '@fontsource/nunito/800.css';
 import '@fontsource/pacifico';
 import './assets/styles/bootstrap.min.css';
+import './assets/animate/animate.min.css';
 import './assets/styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
