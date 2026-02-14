@@ -1,38 +1,41 @@
-/* Mobile collapse */
-@media (max-width: 991.98px) {
-  .custom-collapse {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease;
-    display: block;
-  }
-
-  .custom-collapse.open {
-    overflow: hidden;
-    
-  }
-
-  .dropdown-menu.custom-dropdown {
-    position: relative;
-    width: 100%;
-    box-shadow: none;
-    border: none;
-    display: none;
-  }
-
-  .dropdown-menu.custom-dropdown.show {
-    display: block;
-  }
+.footer .btn.btn-link::before {
+    content: "" !important;
+    margin-right: 0 !important; 
 }
 
-/* Desktop */
-@media (min-width: 992px) {
-  .custom-collapse {
-    display: flex !important;
-    max-height: none !important;
-  }
+@media (max-width: 991.98px) {
+    .custom-collapse {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        display: block;
+    }
 
-  .dropdown-menu.custom-dropdown {
-    position: absolute;
-  }
+    .custom-collapse.open {
+        overflow: hidden;
+        
+    }
+
+    .dropdown-menu.custom-dropdown {
+        position: relative;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        display: none;
+    }
+
+    .dropdown-menu.custom-dropdown.show {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    .custom-collapse {
+        display: flex !important;
+        max-height: none !important;
+    }
+
+    .dropdown-menu.custom-dropdown {
+        position: absolute;
+    }
 }
