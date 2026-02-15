@@ -1,8 +1,10 @@
-import Service from "../components/Service";
+import Service from "./Service";
+import About from "./About";
 
 function Home() {
   return <>
     <Service />
+    <About />
   </>;
 }
 
