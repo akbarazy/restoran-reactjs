@@ -2,6 +2,7 @@ import Service from "./Service";
 import About from "./About";
 import Menu from "./Menu";
 import Booking from "./Booking";
+import Team from "./Team";
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
       <About />
       <Menu />
       <Booking />
+      <Team />
     </>
   );
 }
