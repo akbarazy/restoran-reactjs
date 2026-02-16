@@ -8,6 +8,29 @@
     transform: translateY(50%) !important;
 }
 
+.menu-tab-button {
+    border-bottom: 2px solid transparent !important;
+    transition: none !important;
+}
+
+.menu-tab-button.active {
+    border-bottom-color: var(--primary) !important;
+}
+
+.menu-tab-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.menu-tab-button small.text-body {
+    font-family: "Heebo", sans-serif !important;
+    font-weight: 400 !important;
+}
+
+.tab-pane.animated {
+    animation-duration: 0.25s !important;
+}
+
 @media (max-width: 991.98px) {
     .custom-collapse {
         max-height: 0;
