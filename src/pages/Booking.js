@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
+import { useInView } from '../hooks/useInView';
 
 function Booking() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,14 @@ function Booking() {
   });
   const [videoModal, setVideoModal] = useState(false);
   const [videoSrc, setVideoSrc] = useState('');
+  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (inView && !animated) {
+      setAnimated(true);
+    }
+  }, [inView, animated]);
 
   function handleChange(e) {
     const { id, value } = e.target;
@@ -52,7 +61,7 @@ function Booking() {
 
   return (
     <>
-      <div className='container-xxl py-5 px-0 animated fadeInUp'>
+      <div className={`container-xxl py-5 px-0 animated ${animated ? 'fadeInUp' : 'opacity-0'}`} ref={ref}>
         <div className='row g-0'>
           <div className='col-md-6'>
             <div className='video'>
@@ -68,7 +77,7 @@ function Booking() {
             </div>
           </div>
           <div className='col-md-6 bg-dark d-flex align-items-center'>
-            <div className='p-5 animated fadeInUp'>
+            <div className={`p-5 animated ${animated ? 'fadeInUp' : 'opacity-0'}`}>
               <h5 className='section-title ff-secondary text-start text-primary fw-normal'>
                 Reservation
               </h5>

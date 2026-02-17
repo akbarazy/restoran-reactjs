@@ -1,16 +1,17 @@
-import TeamSection from './Team';
+import Team from './Team';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
-import { about } from '../assets/constant/about'
+import { about } from '../assets/constant/about';
+import { useInView } from '../hooks/useInView';
 
 function About({ section = false }) {
   if (!section) {
     return (
       <>
         <Section />
-        <TeamSection />
+        <Team section={true} />
       </>
     );
   } else {
@@ -21,8 +22,17 @@ function About({ section = false }) {
 }
 
 function Section() {
+  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (inView && !animated) {
+      setAnimated(true);
+    }
+  }, [inView, animated]);
+
   return (
-    <div className='container-xxl py-5'>
+    <div className='container-xxl py-5' ref={ref}>
       <div className='container'>
         <div className='row g-5 align-items-center'>
 
@@ -36,7 +46,7 @@ function Section() {
                   <img
                     src={img.src}
                     alt={`about-${index}`}
-                    className={`img-fluid rounded animated zoomIn ${img.className}`}
+                    className={`img-fluid rounded animated ${animated ? 'zoomIn' : 'opacity-0'} ${img.className}`}
                     style={{ animationDelay: `${index * 0.2}s`, marginTop: index === 1 ? '25%' : '0' }}
                   />
                 </div>
@@ -81,9 +91,12 @@ function Section() {
 }
 
 function Counter({ number, label1, label2 }) {
+  const [ref, inView] = useInView({ threshold: 0.2 });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!inView) return;
+
     let startTime = null;
     const duration = 3000;
     const end = Number(number);
@@ -101,10 +114,10 @@ function Counter({ number, label1, label2 }) {
     };
 
     requestAnimationFrame(animate);
-  }, [number]);
+  }, [number, inView]);
 
   return (
-    <div className='col-sm-6'>
+    <div className='col-sm-6' ref={ref}>
       <div className='d-flex align-items-center border-start border-5 border-primary px-3'>
         <h1 className='flex-shrink-0 display-5 text-primary mb-0'>
           {count}

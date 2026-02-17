@@ -1,35 +1,19 @@
-import menuImg1 from '../assets/images/menu-1.jpg';
-import menuImg2 from '../assets/images/menu-2.jpg';
-import menuImg3 from '../assets/images/menu-3.jpg';
-import menuImg4 from '../assets/images/menu-4.jpg';
-import menuImg5 from '../assets/images/menu-5.jpg';
-import menuImg6 from '../assets/images/menu-6.jpg';
-import menuImg7 from '../assets/images/menu-7.jpg';
-import menuImg8 from '../assets/images/menu-8.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faHamburger, faUtensils } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-
-const menuData = [
-  { category: 'Breakfast', icon: faCoffee, label: 'Popular', margin: 'me-3' },
-  { category: 'Lunch', icon: faHamburger, label: 'Special', margin: 'mx-3' },
-  { category: 'Dinner', icon: faUtensils, label: 'Lovely', margin: 'ms-3' },
-];
-
-const items = [
-  { name: 'Chicken Burger', price: 115, img: menuImg1, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg2, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg3, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg4, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg5, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg6, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg7, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-  { name: 'Chicken Burger', price: 115, img: menuImg8, desc: 'Ipsum ipsum clita erat amet dolor justo diam' },
-];
+import { useState, useEffect } from 'react';
+import { useInView } from '../hooks/useInView';
+import { menuCategory, menuItems } from '../assets/constant/menu';
 
 function Menu() {
   const [activeTab, setActiveTab] = useState(0);
   const [fade, setFade] = useState('');
+  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (inView && !animated) {
+      setAnimated(true);
+    }
+  }, [inView, animated]);
 
   function handleTabMenu(index) {
     if (index === activeTab) return;
@@ -43,16 +27,16 @@ function Menu() {
   }
 
   return (
-    <div className='container-xxl py-5'>
+    <div className='container-xxl py-5' ref={ref}>
       <div className='container'>
-        <div className='text-center animated fadeInUp'>
+        <div className={`text-center animated ${animated ? 'fadeInUp' : 'opacity-0'}`}>
           <h5 className='section-title ff-secondary text-center text-primary fw-normal'>Food Menu</h5>
           <h1 className='mb-5'>Most Popular Items</h1>
         </div>
 
-        <div className='tab-class text-center animated fadeInUp'>
+        <div className={`tab-class text-center animated ${animated ? 'fadeInUp' : 'opacity-0'}`}>
           <ul className='nav nav-pills d-inline-flex justify-content-center border-bottom mb-5'>
-            {menuData.map((menu, index) => (
+            {menuCategory.map((menu, index) => (
               <li className='nav-item' key={menu.category}>
                 <button
                   className={`btn btn-link text-capitalize p-0 d-flex align-items-center text-start pb-3 menu-tab-button ${menu.margin} ${activeTab === index ? 'active' : ''}`}
@@ -69,13 +53,13 @@ function Menu() {
           </ul>
 
           <div className='tab-content'>
-            {menuData.map((menu, index) => (
+            {menuCategory.map((menu, index) => (
               <div
                 key={menu.category}
                 className={`tab-pane p-0 animated ${activeTab === index ? 'active' : ''} ${fade}`}
               >
                 <div className='row g-4'>
-                  {items.map((item, i) => (
+                  {menuItems.map((item, i) => (
                     <div className='col-lg-6' key={i}>
                       <div className='d-flex align-items-center'>
                         <img className='flex-shrink-0 img-fluid rounded' src={item.img} alt={item.name} style={{ width: '80px' }} />

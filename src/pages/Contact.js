@@ -1,12 +1,8 @@
 import { faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
-
-const contactInfo = [
-  { title: 'Booking', email: 'book@example.com' },
-  { title: 'General', email: 'info@example.com' },
-  { title: 'Technical', email: 'tech@example.com' },
-];
+import { useState, useEffect } from 'react';
+import { useInView } from '../hooks/useInView';
+import { contact } from '../assets/constant/contact';
 
 function Contact() {
   const [form, setForm] = useState({
@@ -15,6 +11,14 @@ function Contact() {
     subject: '',
     message: '',
   });
+  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (inView && !animated) {
+      setAnimated(true);
+    }
+  }, [inView, animated]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -26,9 +30,9 @@ function Contact() {
   };
 
   return (
-    <div className='container-xxl py-5'>
+    <div className='container-xxl py-5' ref={ref}>
       <div className='container'>
-        <div className='text-center animated fadeInUp'>
+        <div className={`text-center animated ${animated ? 'fadeInUp' : 'opacity-0'}`}>
           <h5 className='section-title text-primary fw-normal ff-secondary'>
             Contact Us
           </h5>
@@ -38,7 +42,7 @@ function Contact() {
         <div className='row g-4'>
           <div className='col-12'>
             <div className='row gy-4'>
-              {contactInfo.map((item, index) => (
+              {contact.map((item, index) => (
                 <div className='col-md-4' key={index}>
                   <h5 className='section-title text-start text-primary fw-normal ff-secondary'>
                     {item.title}
@@ -52,7 +56,7 @@ function Contact() {
             </div>
           </div>
 
-          <div className='col-md-6 animated fadeIn'>
+          <div className={`col-md-6 animated ${animated ? 'fadeIn' : 'opacity-0'}`}>
             <iframe
               className='position-relative rounded w-100 h-100'
               src='https://www.google.com/maps/embed?pb=!1m18...'
@@ -62,7 +66,7 @@ function Contact() {
             ></iframe>
           </div>
 
-          <div className='col-md-6 animated fadeInUp'>
+          <div className={`col-md-6 animated ${animated ? 'fadeInUp' : 'opacity-0'}`}>
             <form onSubmit={handleSubmit}>
               <div className='row g-3'>
                 <div className='col-md-6'>

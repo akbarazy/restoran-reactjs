@@ -1,3 +1,7 @@
+.opacity-0 {
+    opacity: 0 !important;
+}
+
 .footer .btn.btn-link::before {
     content: "" !important;
     margin-right: 0 !important; 

@@ -5,12 +5,22 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import { testimonial } from '../assets/constant/testimonial';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useState, useEffect } from 'react';
+import { useInView } from '../hooks/useInView';
 
 function Testimonial() {
   const isLoop = testimonial.length > 3;
+  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (inView && !animated) {
+      setAnimated(true);
+    }
+  }, [inView, animated]);
 
   return (
-    <div className='container-xxl py-5 animated fadeInUp'>
+    <div className={`container-xxl py-5 animated ${animated ? 'fadeInUp' : 'opacity-0'}`} ref={ref}>
       <div className='container'>
         <div className='text-center'>
           <h5 className='section-title ff-secondary text-primary fw-normal'>
@@ -27,7 +37,7 @@ function Testimonial() {
           centeredSlides={isLoop}
           loop={isLoop}
           spaceBetween={24}
-          pagination={{ 
+          pagination={{
             clickable: true,
             el: '.testimonial-pagination',
           }}
@@ -39,7 +49,7 @@ function Testimonial() {
         >
           {testimonial.map((item) => (
             <SwiperSlide key={item.id} className='h-auto d-flex'>
-              <TestimonialCard {...item} />
+              <Card {...item} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -50,7 +60,7 @@ function Testimonial() {
   );
 }
 
-function TestimonialCard({ name, profession, image, message }) {
+function Card({ name, profession, image, message }) {
   return (
     <div className='testimonial-item bg-transparent border rounded p-4 w-100'>
       <FontAwesomeIcon
