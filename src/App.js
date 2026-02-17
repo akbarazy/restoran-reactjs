@@ -8,6 +8,7 @@ import Footer from './components/shared/Footer';
 import Header from './components/shared/Header';
 import './assets/styles/App.css';
 import Menu from './pages/Menu';
+import Contact from './pages/Contact';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -26,6 +27,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/service' element={<Service />} />
           <Route path='/menu' element={<Menu />} />
+          <Route path='/contact' element={<Contact />} />
         </Routes>
         <Footer />
       </Layout>
