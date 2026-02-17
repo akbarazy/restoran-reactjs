@@ -22,9 +22,32 @@ function Booking() {
     console.log('Form Data:', formData);
   };
 
+  function handleDateClick() {
+    setFormData(prev => ({
+      ...prev,
+      datetime: getCurrentDateTime()
+    }));
+  }
+
   function openModal(src) {
     setVideoSrc(src);
     setVideoModal(true);
+  }
+
+  function getCurrentDateTime() {
+    const now = new Date();
+
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const year = now.getFullYear();
+
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+
+    return `${month}/${day}/${year} ${hours}:${minutes} ${ampm}`;
   }
 
   return (
@@ -87,6 +110,7 @@ function Booking() {
                         placeholder='Date & Time'
                         value={formData.datetime}
                         onChange={handleChange}
+                        onFocus={handleDateClick}
                       />
                       <label htmlFor='datetime'>Date & Time</label>
                     </div>
