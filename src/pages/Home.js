@@ -3,6 +3,7 @@ import About from "./About";
 import Menu from "./Menu";
 import Booking from "./Booking";
 import Team from "./Team";
+import Testimonial from "./Testimonial";
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <Menu />
       <Booking />
       <Team />
+      <Testimonial />
     </>
   );
 }

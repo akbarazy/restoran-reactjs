@@ -41,6 +41,42 @@
     margin-top: 0 !important;
 }
 
+.swiper-slide {
+  transition: 0.5s;
+}
+
+.swiper-slide-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--light);
+}
+
+.swiper-slide-active * {
+  color: var(--light) !important;
+}
+
+.testimonial-pagination {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.testimonial-pagination .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #CCCCCC;
+  border-radius: 50%;
+  background: transparent;
+  opacity: 1;
+  transition: 0.5s;
+  margin: 0 5px;
+}
+
+.testimonial-pagination .swiper-pagination-bullet-active {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
 @media (max-width: 991.98px) {
     .custom-collapse {
         max-height: 0;
