@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Layout from './Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Service from './pages/Service';
-import Footer from './components/shared/Footer';
-import Header from './components/shared/Header';
-import './assets/styles/App.css';
 import Menu from './pages/Menu';
 import Contact from './pages/Contact';
 import Booking from './pages/Booking';
 import Team from './pages/Team';
 import Testimonial from './pages/Testimonial';
+import Layout from './Layout';
+import Footer from './components/shared/Footer';
+import Header from './components/shared/Header';
+import './assets/styles/App.css';
 
 function App() {
   const [loading, setLoading] = useState(true);

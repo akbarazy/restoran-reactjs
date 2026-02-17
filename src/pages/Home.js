@@ -1,5 +1,5 @@
 import Service from "./Service";
-import About from "../components/About";
+import About from "./About";
 import Menu from "./Menu";
 import Booking from "./Booking";
 import Team from "./Team";
@@ -8,11 +8,11 @@ import Testimonial from "./Testimonial";
 function Home() {
   return (
     <>
-      <Service />
-      <About />
+      <Service section={true} />
+      <About section={true} />
       <Menu />
       <Booking />
-      <Team />
+      <Team section={true} />
       <Testimonial />
     </>
   );
