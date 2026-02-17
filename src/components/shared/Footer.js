@@ -2,10 +2,21 @@ import { faAngleRight, faMapMarkerAlt, faPhoneAlt, faEnvelope } from "@fortaweso
 import { faTwitter, faFacebookF, faYoutube, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useInView } from "../../hooks/useInView";
 
 function Footer() {
+  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (inView && !animated) {
+      setAnimated(true);
+    }
+  }, [inView, animated]);
+
   return (
-    <div className='container-fluid bg-dark text-light footer pt-5 mt-5 animated fadeIn'>
+    <div className={`container-fluid bg-dark text-light footer pt-5 mt-5 animated ${animated ? 'fadeIn' : 'opacity-0'}`} ref={ref}>
       <div className='container py-5'>
         <div className='row g-5'>
 
