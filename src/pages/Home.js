@@ -1,5 +1,5 @@
 import Service from "./Service";
-import About from "./About";
+import About from "../components/About";
 import Menu from "./Menu";
 import Booking from "./Booking";
 import Team from "./Team";

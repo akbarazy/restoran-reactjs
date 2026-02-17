@@ -9,6 +9,9 @@ import Header from './components/shared/Header';
 import './assets/styles/App.css';
 import Menu from './pages/Menu';
 import Contact from './pages/Contact';
+import Booking from './pages/Booking';
+import Team from './pages/Team';
+import Testimonial from './pages/Testimonial';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +30,10 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/service' element={<Service />} />
           <Route path='/menu' element={<Menu />} />
+          <Route path='/team' element={<Team />} />
+          <Route path='/testimonial' element={<Testimonial />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/booking' element={<Booking />} />
         </Routes>
         <Footer />
       </Layout>
